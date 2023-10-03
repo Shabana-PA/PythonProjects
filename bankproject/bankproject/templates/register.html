@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .registration-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .registration-container h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .registration-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .registration-form input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: none;
+        }
+
+        .registration-form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .registration-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: #dc3545;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container">
+        <h1>Registration</h1>
+        <form method="post" action="{% url 'credentials:register' %}" class="registration-form">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" placeholder="Enter your Username" required>
+            <label for="password">Password:</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+            <label for="password1">Confirm Password:</label>
+            <input type="password" name="password1" placeholder="Confirm password" required>
+            <input type="submit" value="Register">
+        </form>
+        {% for msg in messages %}
+            <p class="error-message">{{ msg }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

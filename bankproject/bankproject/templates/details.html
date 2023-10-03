@@ -1,0 +1,16 @@
+<!-- credentials/templates/credentials/details.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>Details Form</h2>
+  <form method="post" enctype="multipart/form-data" action="{% url 'bankapp:details' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div>
+        <a href="{% url 'bankapp:success' %}">
+            <button>Submit</button></a>
+    </div>
+  </form>
+</div>
+{% endblock %}
